@@ -768,3 +768,21 @@ Grab the Hash & Challenge Password
 conf t
  crypto pki enroll NETPLUS
 ~~~
+
+
+
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQCYC4hJGi/0Ur6xNsJ2Y1aU+lT9yDxBh0BtR995WDKa
+CKGZvryIbDs78ULCxKUruZv+ZZRoKo742S3rb/r7zDxz10EgNPKKIaoItXKNxDJLa/3vNiGjb+qlftuL
+paIfHMi5pKdLo7PLI8q9maZuVyGwkf5rqjbfDuMQKMSslDWfow==  
+
+
+
+
+IOS Keys in SECSH format(ssh-rsa, base64 encoded):
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQCYC4hJGi/0Ur6xNsJ2Y1aU+lT9yDxBh0BtR995WDKa
+CKGZvryIbDs78ULCxKUruZv+ZZRoKo742S3rb/r7zDxz10EgNPKKIaoItXKNxDJLa/3vNiGjb+qlftuL
+paIfHMi5pKdLo7PLI8q9maZuVyGwkf5rqjbfDuMQKMSslDWfow==                            
+COREtaas-42(config)# 
+
+
