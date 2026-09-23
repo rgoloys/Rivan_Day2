@@ -1,14 +1,14 @@
 
-<!-- Your monitor number = #$34T# -->
+<!-- Your monitor number = 42 -->
 
 
 ## ⛅ Warm Up for Day 2.
 
 Access the ff via SecureCRT:
-- 10.#$34T#.1.2       CoreTAAS
-- 10.#$34T#.1.4       CoreBABA
-- 10.#$34T#.100.8     CUCM
-- 10.#$34T#.#$34T#.1  EDGE
+- 10.42.1.2       CoreTAAS
+- 10.42.1.4       CoreBABA
+- 10.42.100.8     CUCM
+- 10.42.42.1  EDGE
 
 <br>
 
@@ -16,12 +16,12 @@ Verify Connectivity:
 
 ~~~cmd
 @cmd
-ping 10.#$34T#.1.10         PC Network Adapter
-ping 10.#$34T#.1.2		    CoreTAAS
-ping 10.#$34T#.1.4		    CoreBABA
-ping 10.#$34T#.100.8		CUCM
-ping 10.#$34T#.#$34T#.1		EDGE - INSIDE
-ping 200.0.0.#$34T#		    EDGE - OUTSIDE
+ping 10.42.1.10         PC Network Adapter
+ping 10.42.1.2		    CoreTAAS
+ping 10.42.1.4		    CoreBABA
+ping 10.42.100.8		CUCM
+ping 10.42.42.1		EDGE - INSIDE
+ping 200.0.0.42		    EDGE - OUTSIDE
 
 ping 200.0.0.k		        Klassmate's EDGE	       k = klassmate's Monitor Number
 ping 10.k.100.8		        Klassmate's CUCM
@@ -45,7 +45,7 @@ ping 10.k.1.10		        Klassmate's PC
 conf t
  monitor session 1 source interface fa0/3,fa0/5,fa0/7
  monitor session 1 destination interface fa0/1,fa0/9
- end
+ end   || no monitor session 1 ito gagamitin pag ibabalik sa dati
 ~~~
 
 
@@ -82,11 +82,11 @@ Win + R
 <br>
 
 
-~~~
+~~~ pag gawa ng user account kay cisco gamit din po encryption
 !@CoreTAAS
 conf t
  username admin privilege 15 secret pass
- username _____ privilege 15 secret pass
+ username ens privilege 15 secret pass
  !
  ip domain name sec.com
  crypto key generate rsa
@@ -172,7 +172,7 @@ certutil -hashfile SERVER_EVAL_x64FRE_en-us.iso md5
 Execute a persistent ping
 ~~~
 !@cmd
-ping 10.#$34T#.1.2 -t
+ping 10.42.1.2 -t
 ~~~
 
 
@@ -199,7 +199,7 @@ conf t
 ### NIC TEAMING
 
 Windows Server 2022:
-  Name: WIN-NETPLUS-#$34T#
+  Name: WIN-NETPLUS-42
   
   | NetAdapter        | Connection          | IP Address        |
   | ---               | ---                 | ---               |
@@ -208,7 +208,7 @@ Windows Server 2022:
   | Network Adapter 3 | VMNet 3             | 192.168.103.8 /24 |
   | Network Adapter 4 | VMNet 3             |                   |
   | Network Adapter 5 | VMNet 3             |                   |
-  | Network Adapter 6 | Bridged (Replicate) | 10.#$34T#.1.8 /24 |
+  | Network Adapter 6 | Bridged (Replicate) | 10.42.1.8 /24 |
   
   
 <br>
@@ -226,15 +226,15 @@ Query only the ff interface:
 
 | Name | Domain Name   | IP                 |
 | ---  | ---           | ---                |
-| ns1  | net#$34T#.com | 10.#$34T#.1.8      |
-| www  |               | 10.#$34T#.1.8      |
-|      |               | 10.#$34T#.1.8      |
-| ct   |               | 10.#$34T#.1.2      |
-| cb   |               | 10.#$34T#.1.4      |
-| cm   |               | 10.#$34T#.100.8    |
-| ed   |               | 10.#$34T#.#$34T#.1 |
-| cam6 |               | 10.#$34T#.50.6     |
-| cam8 |               | 10.#$34T#.50.8     |
+| ns1  | net42.com | 10.42.1.8      |
+| www  |               | 10.42.1.8      |
+|      |               | 10.42.1.8      |
+| ct   |               | 10.42.1.2      |
+| cb   |               | 10.42.1.4      |
+| cm   |               | 10.42.100.8    |
+| ed   |               | 10.42.42.1 |
+| cam6 |               | 10.42.50.6     |
+| cam8 |               | 10.42.50.8     |
 
 
 <br>
@@ -242,14 +242,14 @@ Query only the ff interface:
 
 On real WinServer
 > Conditional Forwarder  
-  > net#$34T#.com  -  208.8.8.8  
+  > net42.com  -  208.8.8.8  
 
 
 ~~~
 !@cmd
-ping www.net#$34T#.com
+ping www.net42.com
 
-ping smtp.net#$34T#.com
+ping smtp.net42.com
 ~~~
 
 
@@ -275,15 +275,15 @@ ROOT
 
 
 ## Web Server
-__Configure Web Server (net#$34T#.com)__  
+__Configure Web Server (net42.com)__  
 1. Internet Information Services Manager
-2. Create an `http` mapping for the domain `www.net#$34T#.com`
+2. Create an `http` mapping for the domain `www.net42.com`
 
 
 <br>
 
 __Access__
-http://www.net#$34T#.com/
+http://www.net42.com/
 
 
 <br>
@@ -440,13 +440,13 @@ Subject : Distinguished Names
 
 
 ### Wildcard Certificate  
-Configure DNS for  `sec#$34T#.com`
+Configure DNS for  `sec42.com`
 
 | Record | Mapping           |
 | ---    | ---               |
 | www    | 208.8.8.8         |
-| web    | www.net#$34T#.com |
-| site   | www.net#$34T#.com |
+| web    | www.net42.com |
+| site   | www.net42.com |
 
 
 &nbsp;
@@ -494,7 +494,7 @@ Configure DNS for  `sec#$34T#.com`
 - HMail Server
 - Thunderbird
 
-__Create Accounts For `net#$34T#.com`__
+__Create Accounts For `net42.com`__
 1. Support
 2. Admin
 3. User
@@ -502,9 +502,9 @@ __Create Accounts For `net#$34T#.com`__
 
 Setup __DNS Secondary Zones__ & __Conditional Forwarders__
 ~~~
-!@cmd SEC-AZURE#$34T#
-route add 10.0.0.0 mask 255.0.0.0 10.#$34T#.1.4 -p
-route add 200.0.0.0 mask 255.255.255.0 10.#$34T#.1.4 -p
+!@cmd SEC-AZURE42
+route add 10.0.0.0 mask 255.0.0.0 10.42.1.4 -p
+route add 200.0.0.0 mask 255.255.255.0 10.42.1.4 -p
 ~~~
 
 
@@ -611,7 +611,7 @@ conf t
  username admin privilege 15 secret pass
  aaa new-model
  radius server WINRAD
-  address ipv4 10.#$34T#.1.8 auth-port 1812 acct-port 1813
+  address ipv4 10.42.1.8 auth-port 1812 acct-port 1813
   key keykeymo
   exit
  aaa group server radius RADGROUP
@@ -706,7 +706,7 @@ Afterwards, install ADCS Add-Ons:
 
 ### Create DNS Mapping for both Device
 - Reverse Lookup Zone : 208.8.8.0
-- A Record : utmph.net#$34T#.com : 208.8.8.11
+- A Record : utmph.net42.com : 208.8.8.11
 
 
 ~~~
@@ -717,10 +717,10 @@ conf t
  crypto pki trustpoint NETPLUS
   enrollment url http://192.168.102.8/certsrv/mscep/mscep.dll
   serial-number
-  fqdn utmph.net#$34T#.com
+  fqdn utmph.net42.com
   ip-address 208.8.8.11
   subject-name CN=UTM-PH,OU=NOC,O=RIVANCORP,L=MAKATI,ST=NCR,C=PH
-  subject-alt-name utmph.net#$34T#.com
+  subject-alt-name utmph.net42.com
   revocation-check none
   source interface GigabitEthernet2
   rsakeypair CERTKEY
